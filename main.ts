@@ -9,6 +9,47 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile1`, function (sprite, l
     currentLevel += 1
     startLvel()
 })
+controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
+    if (Santa.vx < 0) {
+        projectile = sprites.createProjectileFromSprite(img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . a a . a a . . . . . 
+            . . . . . . a a 3 a a . . . . . 
+            . . . . . . 3 a a a 3 . . . . . 
+            . . . . . . a a a a a . . . . . 
+            . . . . . . a 3 3 3 a . . . . . 
+            . . . . . . a 3 3 3 a . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `, Santa, -200, 0)
+    } else {
+        projectile = sprites.createProjectileFromSprite(img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . a a . a a . . . . . 
+            . . . . . . a a 3 a a . . . . . 
+            . . . . . . 3 a a a 3 . . . . . 
+            . . . . . . a a a a a . . . . . 
+            . . . . . . a 3 3 3 a . . . . . 
+            . . . . . . a 3 3 3 a . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `, Santa, 200, 0)
+    }
+})
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Zombie1, function (sprite, otherSprite) {
     otherSprite.destroy()
     Ghost = sprites.create(img`
@@ -69,7 +110,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Zombie1, function (sprite, other
     1000,
     true
     )
-    Ghost.setPosition(Santa.x + 80, Santa.y - 80)
+    Ghost.setPosition(Santa.x + 100, Santa.y - 80)
     Ghost.follow(Santa, 50)
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
@@ -319,36 +360,22 @@ function startLvel () {
     }
     for (let value of tiles.getTilesByType(assets.tile`myTile11`)) {
         ZombieKid1 = sprites.create(img`
-            ..............................
-            ..............................
-            ..............................
-            ............5555555...........
-            ............5555555...........
-            ...........5555555555.........
-            ...........55555555555........
-            ..........577777777755........
-            ...........77ff77ff77.........
-            ...........7777777777.........
-            ...........7777777777.........
-            ...........7777fff777.........
-            ...........777722f777.........
-            ............77777777..........
-            ...........f11777711f.........
-            ..........f7f111111f7f........
-            ..........f7f771117f7f........
-            ..........f7f171777f7f........
-            ...........ff888888ff.........
-            ............f888888f..........
-            ............f88ff88f..........
-            ............fff..fff..........
-            ..............................
-            ..............................
-            ..............................
-            ..............................
-            ..............................
-            ..............................
-            ..............................
-            ..............................
+            . . . . 5 e e e . . . . 
+            . . 5 5 5 5 5 5 5 e . . 
+            . e e 5 5 5 5 5 5 5 e . 
+            e 5 5 e 7 7 7 7 5 5 5 5 
+            5 5 e 7 7 7 7 7 5 5 5 e 
+            5 e e 7 7 7 7 7 7 5 5 e 
+            5 7 7 7 7 7 7 7 7 7 7 e 
+            e 7 7 f f 7 7 f f 7 7 e 
+            e e 7 7 7 7 7 7 7 7 7 5 
+            . f e 7 7 2 2 7 7 7 f . 
+            . f f e 7 7 7 7 7 f f . 
+            f 7 f b 1 1 1 1 b f 7 f 
+            7 f f 1 1 1 1 1 1 f f 7 
+            7 7 f 6 6 6 6 6 6 f 7 7 
+            . . . f f f f f f . . . 
+            . . . f f . . f f . . . 
             `, SpriteKind.Zombie1)
         tiles.placeOnTile(ZombieKid1, value)
         tiles.setTileAt(value, assets.tile`transparency16`)
@@ -358,8 +385,25 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.coin, function (sprite, otherSpr
     info.changeScoreBy(1)
     otherSprite.destroy()
 })
+function Menu () {
+    game.splash("Shortly after Halloween and before Christmas, a deadly zombie virus broke out, infecting all the children and turning them into mindless zombies.  ")
+    game.splash("Help Santa save Christmas by activating the big red button that releases the cure at the end of level 3.")
+    game.splash("Move from side to side using the wasd or arrows and jump with the space bar. To climb walls, jump and use the arrow keys to latch onto the walls.")
+    game.splash("Watch out for the zombie kids since if you make contact with them, that will summon their ghost which will take a life away.")
+    game.splash("To destroy the ghost, shoot presents at it by pressing the enter key.")
+    game.splash("Tip: try to shoot the ghost from the right since shooting from the left is more difficult because you have to be facing the ghost to shoot it.")
+    game.splash("Move to the next level by taking Santa's sled at the end of each level!")
+    game.splash("Try your chance at a high score by collecting coins that ae each worth 1 point! If you successfully shoot a ghost, that's 20 points!")
+    game.splash("Good luck and have fun surviving the three levels!")
+    game.splash("Entering the world of Christmas Zombies..")
+}
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile10`, function (sprite, location) {
+    game.splash("\"Congratulations! You saved Christmas!\"")
     game.over(true, effects.confetti)
+})
+sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
+    info.changeScoreBy(20)
+    otherSprite.destroy(effects.spray, 500)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     info.changeLifeBy(-1)
@@ -368,8 +412,11 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
 let ZombieKid1: Sprite = null
 let coin: Sprite = null
 let Ghost: Sprite = null
+let projectile: Sprite = null
 let Santa: Sprite = null
 let currentLevel = 0
+game.splash("Christmas Zombies")
+Menu()
 scene.setBackgroundColor(15)
 scene.setBackgroundImage(img`
     ................................................................................................................................................................
