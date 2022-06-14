@@ -5,10 +5,6 @@ namespace SpriteKind {
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile0`, function (sprite, location) {
     game.over(false, effects.melt)
 })
-scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile1`, function (sprite, location) {
-    currentLevel += 1
-    startLvel()
-})
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     if (Santa.vx < 0) {
         projectile = sprites.createProjectileFromSprite(img`
@@ -112,6 +108,10 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Zombie1, function (sprite, other
     )
     Ghost.setPosition(Santa.x + 100, Santa.y - 80)
     Ghost.follow(Santa, 50)
+})
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile13`, function (sprite, location) {
+    currentLevel += 1
+    startLvel()
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     if (Santa.vy == 0) {
