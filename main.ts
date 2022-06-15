@@ -6,6 +6,7 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile0`, function (sprite, l
     game.over(false, effects.melt)
 })
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
+    music.pewPew.play()
     if (Santa.vx < 0) {
         projectile = sprites.createProjectileFromSprite(img`
             . . . . . . . . . . . . . . . . 
@@ -47,6 +48,7 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     }
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Zombie1, function (sprite, otherSprite) {
+    music.bigCrash.play()
     otherSprite.destroy()
     Ghost = sprites.create(img`
         . . . . . . . . . . . . . . . . 
@@ -110,10 +112,12 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Zombie1, function (sprite, other
     Ghost.follow(Santa, 50)
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile13`, function (sprite, location) {
+    music.beamUp.play()
     currentLevel += 1
     startLvel()
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
+    music.zapped.play()
     if (Santa.vy == 0) {
         Santa.vy = -150
     }
@@ -402,10 +406,12 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile10`, function (sprite, 
     game.over(true, effects.confetti)
 })
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
+    music.spooky.play()
     info.changeScoreBy(20)
     otherSprite.destroy(effects.spray, 500)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
+    music.smallCrash.play()
     info.changeLifeBy(-1)
     otherSprite.destroy()
 })
