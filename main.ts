@@ -397,7 +397,7 @@ function Menu () {
     game.splash("To destroy the ghost, shoot presents at it by pressing the enter key.")
     game.splash("Tip: try to shoot the ghost from the right since shooting from the left is more difficult because you have to be facing the ghost to shoot it.")
     game.splash("Move to the next level by taking Santa's sled at the end of each level!")
-    game.splash("Try your chance at a high score by collecting coins that ae each worth 1 point! If you successfully shoot a ghost, that's 20 points!")
+    game.splash("Try your chance at a high score by collecting coins that are each worth 1 point! If you successfully shoot a ghost, that's 20 points!")
     game.splash("Good luck and have fun surviving the three levels!")
     game.splash("Entering the world of Christmas Zombies..")
 }
