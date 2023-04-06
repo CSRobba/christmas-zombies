@@ -1,4 +1,4 @@
- 
+This code can be implemented at microsoft MakeCodeArcade in the written JavaScript section. The code here is that of a christmas-themed first-person zombie shooter game with self-designed sprites as game characters and tokens.
 
 
 > Open this page at [https://csrobba.github.io/christmas-zombies/](https://csrobba.github.io/christmas-zombies/)
